@@ -28,7 +28,7 @@ def gether_urls(base, pattern):
 def get_data(item_url):
     source_code = requests.get(item_url)
     plain_text = source_code.text.replace("<br>", " ")
-    soup = BeautifulSoup(plain_text)
+    soup = BeautifulSoup(plain_text, 'lxml' ,from_encoding='windows-1251') #windows-1251
 
     for contact in soup.findAll('td', {'class': 'tdSJkontakt'}):
         name = contact.b.string
